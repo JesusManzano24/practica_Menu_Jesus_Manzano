@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Menús Responsivos con Animaciones</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Menú lateral (categorías de arriba hacia abajo) -->
+  <div class="side-menu" id="sideMenu">
+    <a href="#inicio">Inicio</a>
+    <a href="#servicios">Servicios</a>
+    <a href="#contacto">Contacto</a>
+  </div>
+
+  <!-- Menú superior (categorías de izquierda a derecha) -->
+  <div class="top-menu" id="topMenu">
+    <div class="menu-items">
+      <a href="#inicio">Inicio</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+  </div>
+
+  <!-- Botones de tres puntos para mostrar los menús -->
+  <button class="dots dots-side hidden" id="dotsSideMenu">...</button>
+  <button class="dots dots-top hidden" id="dotsTopMenu">...</button>
+
+  <!-- Botón para menú superior -->
+  <img src="logof.jpeg" alt="Logo Menú Superior" class="logo logo-top" id="toggleTopMenu" title="Ocultar Menú Superior">
+
+  <!-- Botón para menú lateral -->
+  <img src="logof.jpeg" alt="Logo Menú Lateral" class="logo logo-side" id="toggleSideMenu" title="Ocultar Menú Lateral">
+
+  <script>
+    const topMenu = document.getElementById('topMenu');
+    const sideMenu = document.getElementById('sideMenu');
+    const toggleTopMenu = document.getElementById('toggleTopMenu');
+    const toggleSideMenu = document.getElementById('toggleSideMenu');
+    const dotsTopMenu = document.getElementById('dotsTopMenu');
+    const dotsSideMenu = document.getElementById('dotsSideMenu');
+
+    // Ocultar Menú Superior y mostrar los puntos
+    toggleTopMenu.addEventListener('click', () => {
+      topMenu.classList.add('hidden-top-menu');
+      toggleTopMenu.classList.add('hidden');
+      dotsTopMenu.classList.remove('hidden');
+    });
+
+    // Ocultar Menú Lateral y mostrar los puntos
+    toggleSideMenu.addEventListener('click', () => {
+      sideMenu.classList.add('hidden-only-menu');
+      toggleSideMenu.classList.add('hidden');
+      dotsSideMenu.classList.remove('hidden');
+
+      // Expandir Menú Superior para abarcar el espacio completo
+      topMenu.style.left = "0";
+      topMenu.style.width = "100%";
+    });
+
+    // Mostrar Menú Superior y ocultar los puntos
+    dotsTopMenu.addEventListener('click', () => {
+      topMenu.classList.remove('hidden-top-menu');
+      toggleTopMenu.classList.remove('hidden');
+      dotsTopMenu.classList.add('hidden');
+    });
+
+    // Mostrar Menú Lateral y ocultar los puntos
+    dotsSideMenu.addEventListener('click', () => {
+      sideMenu.classList.remove('hidden-only-menu');
+      toggleSideMenu.classList.remove('hidden');
+      dotsSideMenu.classList.add('hidden');
+
+      // Restaurar la posición original del Menú Superior
+      topMenu.style.left = "250px";
+      topMenu.style.width = "calc(100% - 250px)";
+    });
+  </script>
+</body>
+</html>
